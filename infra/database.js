@@ -1,18 +1,15 @@
-
-
 import { Client } from "pg";
 
-
 async function query(queryObject) {
- let client;
-  try{
-   client = await getNewClient();
+  let client;
+  try {
+    client = await getNewClient();
     const result = await client.query(queryObject);
-    return result; 
-  }catch (error){
+    return result;
+  } catch (error) {
     console.error(error);
     throw error;
-  }finally{
+  } finally {
     await client.end();
   }
 }
@@ -31,17 +28,16 @@ async function getNewClient() {
   return client;
 }
 
-export default {   
+export default {
   query,
-  getNewClient 
-}
+  getNewClient,
+};
 
 function getSSLValues() {
   if (process.env.POSTGRES_CA) {
-   return {
-    ca: process.env.POSTGRES_CA,
-   };
+    return {
+      ca: process.env.POSTGRES_CA,
+    };
   }
-   return process.env.NODE_ENV === "production" ? true : false;
+  return process.env.NODE_ENV === "production" ? true : false;
 }
-

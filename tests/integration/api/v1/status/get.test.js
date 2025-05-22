@@ -1,6 +1,6 @@
 import orchestrator from "tests/orchestrator.js";
 
-beforeAll( async () => {
+beforeAll(async () => {
   await orchestrator.waitForAllServices();
 });
 
@@ -22,4 +22,4 @@ test("GET to /api/v1/status should return 200", async () => {
   expect(databaseInfo.version).toEqual("16.0");
   expect(databaseInfo.max_connections).toEqual(100);
   expect(databaseInfo.opened_connections).toEqual(1);
-}); 
+});
